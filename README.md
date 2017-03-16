@@ -1,4 +1,4 @@
-After following the installation and configuration steps below, your Raspberry Pi will serve a single page demonstration app at: `http://your_raspberry_pi_hostname:5000/`.
+yAfter following the installation and configuration steps below, your Raspberry Pi will serve a single page demonstration app at: `http://your_raspberry_pi_hostname:5000/`.
 
 * Each pin defined as output will show up in the **controls** section with a button to toggle its state.
 * Each pin with an input event displays a message in the **events** section each time it is triggered.
@@ -15,7 +15,7 @@ After following the installation and configuration steps below, your Raspberry P
 #### Step 1: Clone this repository
 
 ```
-git clone https://github.com/projectweekend/Pi-GPIO-Server.git
+git clone https://github.com/peteboyrocket/Pi-GPIO-Server.git
 ```
 
 #### Step 2: Run install script
