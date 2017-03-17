@@ -42,11 +42,6 @@ class PinDetail(Pin):
         return self.response(result, 200)
 
     def patch(self, pin_num):
-
-        # http://stackoverflow.com/questions/27114545/parse-args-doesnt-seem-to-understand-json-arguments
-        # self.reqparser.add_argument('events', type=list, location='json', required=True)
-        # request.json.get('events')
-
         self.parser.add_argument('value', type=int)
         args = self.parser.parse_args()
         result = HTTP_MANAGER.update_value(pin_num, args['value'])
@@ -77,9 +72,6 @@ class Data(BasicResource):
         return self.response(data, 200)
 
 class DataChanger(BasicResource):
-
-    def __init__(self):
-        super(DataChanger, self).__init__()
 
     def patch(self, value):
         return self.response("Low set", 200)
