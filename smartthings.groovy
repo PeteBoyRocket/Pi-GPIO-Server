@@ -113,35 +113,35 @@ def parse(String description) {
 
 	if (result){
     	log.debug "Computer is up"
-   		sendEvent(name: "switch", value: "on")
+   	//	sendEvent(name: "switch", value: "on")
     }
     
     log.debug "check temp..."
     if (result.containsKey("temp")) {
-        log.debug "temp: ${result.cpu_temp.toDouble().round()} C"
-    	sendEvent(name: "temperature", value: result.cpu_temp.toDouble().round())
+        log.debug "temp: ${result.temp.toDouble().round()} C"
+    	sendEvent(name: "temperature", value: result.temp.toDouble().round())
     }
 
     log.debug "check humidity..."
     if (result.containsKey("humidity")) {
-        log.debug "temp: ${result.humidity.toDouble().round()}"
+        log.debug "humidity: ${result.humidity.toDouble().round()}"
     	sendEvent(name: "humidity", value: result.humidity.toDouble().round())
     }
  
   	if (result.containsKey("lighton")) {
      	log.debug "lighton: ${result.lighton.toDouble().round()}"
-        if (result.gpio_value_17.contains("1")){
-           	log.debug "lighton: open"
-            sendEvent(name: "lighton", value: "on")
+        if (result.lighton.contains("1")){
+           	log.debug "lighton: on"
+            sendEvent(name: "switch", value: "on")
         } else {
-           	log.debug "lighton: closed"
-            sendEvent(name: "lighton", value: "off")
+           	log.debug "lighton: off"
+            sendEvent(name: "switch", value: "off")
         }
     }
   	
     if (result.containsKey("motion")) {
         log.debug "motion: ${result.motion.toDouble().round()}"
-        if (result.gpio_value_18.contains("1")){
+        if (result.motion.contains("1")){
             log.debug "motion: active"
             sendEvent(name: "motion", value: "active")
         } else {
@@ -154,10 +154,10 @@ def parse(String description) {
         log.debug "islight: ${result.islight.toDouble().round()}"
         if (result.islight.contains("1")){
             log.debug "islight: bright"
-            sendEvent(name: "islight", value: "bright")
+            sendEvent(name: "illuminance", value: "bright")
         } else {
          	log.debug "islight: dark"
-            sendEvent(name: "islight", value: "dark")
+            sendEvent(name: "illuminance", value: "dark")
         }
     }
 }
@@ -177,29 +177,44 @@ def off(){
 	log.debug "Setting light off"
     sendEvent(name: "lighton", value: "off")
     def uri = "/api/v1/data/0"
-    postAction(uri)
+    patchAction(uri)
 }
 
 def on(){
 	log.debug "Setting light on"
     sendEvent(name: "lighton", value: "on")
     def uri = "/api/v1/data/1"
-    postAction(uri)
+    patchAction(uri)
 }
 
 private getRPiData() {
 	def uri = "/api/v1/data"
-    postAction(uri)
+    getAction(uri)
 }
 
 // ------------------------------------------------------------------
 
-private postAction(path){
+private getAction(path){
 
     setDeviceNetworkId(ip,port)  
 
     def result = new physicalgraph.device.HubAction(
         method: "GET",
+        path: path,
+        headers: [
+            HOST: getHostAddress()
+        ]
+    )
+
+    result   
+}
+
+private patchAction(path){
+
+    setDeviceNetworkId(ip,port)  
+
+    def result = new physicalgraph.device.HubAction(
+        method: "PATCH",
         path: path,
         headers: [
             HOST: getHostAddress()

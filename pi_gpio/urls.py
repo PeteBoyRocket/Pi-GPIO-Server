@@ -11,6 +11,7 @@ api = restful.Api(app)
 api.add_resource(PinList, '/api/v1/pin')
 api.add_resource(PinDetail, '/api/v1/pin/<string:pin_num>')
 api.add_resource(Data, '/api/v1/data')
+api.add_resource(Data, '/api/v1/data/<string:value>')
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
