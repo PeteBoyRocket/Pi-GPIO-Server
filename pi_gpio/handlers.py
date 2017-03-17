@@ -78,9 +78,9 @@ class DataChanger(BasicResource):
         SmartThingsPin = 11
 
         if value == 1:
-            GPIO.output(SmartThingsPin, GPIO.HIGH)
+          #  GPIO.output(SmartThingsPin, GPIO.HIGH)
             return {'message': 'high set'}, 200
         else:
-            GPIO.output(SmartThingsPin, GPIO.LOW)
+         #   GPIO.output(SmartThingsPin, GPIO.LOW)
             return {'message': 'lowhigh set'}, 200
 
