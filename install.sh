@@ -8,3 +8,6 @@ sudo pip install -r requirements.txt
 
 # Temp humidity sensor code
 sudo curl https://raw.githubusercontent.com/szazo/DHT11_Python/master/dht11.py > sensors/dht11.py
+
+# Make service run on boot
+sudo systemctl enable gpio-server.service
