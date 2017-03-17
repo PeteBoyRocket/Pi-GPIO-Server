@@ -44,8 +44,7 @@ class PinDetail(Pin):
         self.parser.add_argument('value', type=int)
         args = self.parser.parse_args()
 
-        message = "args" + args['value']
-        return {'message': message}, 404
+        return {'message': args}, 404
         result = HTTP_MANAGER.update_value(pin_num, args['value'])
         if not result:
             return self.pin_not_found()
