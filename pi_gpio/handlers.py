@@ -62,5 +62,11 @@ class Data(BasicResource):
         return {'message': 'Pin not found'}, 404
 
     def get(self):
-        result = HTTP_MANAGER.read_all()
-        return self.response(result, 200)
+
+        data = {
+            'lighton': True,
+            'temperature': "22",
+            'humidity': "23"
+        }
+
+        return self.response(data, 200)
