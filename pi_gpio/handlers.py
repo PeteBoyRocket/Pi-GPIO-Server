@@ -62,8 +62,13 @@ class Data(BasicResource):
         }
 
     def get(self):
+        
+        lighton = 1
+        if HTTP_MANAGER.read_value(13) == 1:
+            lighton = 0
+        
         data = {
-            'lighton': HTTP_MANAGER.read_value(13),
+            'lighton': lighton,
             'temp': "22",
             'humidity': "45",
             'islight': "1",
