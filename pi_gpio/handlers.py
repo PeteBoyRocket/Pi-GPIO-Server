@@ -52,8 +52,8 @@ class Data(BasicResource):
 
     def __init__(self):
         super(Data, self).__init__()
-        self.fields = {            
-            "lighton": fields.Bool,
+        self.fields = {
+            "lighton": fields.String,
             "temperature": fields.String,
             "humidity": fields.String
         }
@@ -62,11 +62,9 @@ class Data(BasicResource):
         return {'message': 'Pin not found'}, 404
 
     def get(self):
-
         data = {
-            'lighton': True,
+            'lighton': "True",
             'temperature': "22",
             'humidity': "23"
         }
-
         return self.response(data, 200)
