@@ -2,6 +2,7 @@ from flask.ext.restful import fields
 from meta import BasicResource
 from config.pins import PinHttpManager
 
+import RPi.GPIO as GPIO
 
 HTTP_MANAGER = PinHttpManager()
 
@@ -43,8 +44,6 @@ class PinDetail(Pin):
     def patch(self, pin_num):
         self.parser.add_argument('value', type=int)
         args = self.parser.parse_args()
-
-        return {'message': args}, 404
         result = HTTP_MANAGER.update_value(pin_num, args['value'])
         if not result:
             return self.pin_not_found()
@@ -60,9 +59,6 @@ class Data(BasicResource):
             "humidity": fields.String
         }
 
-    def pin_not_found(self):
-        return {'message': 'Pin not found'}, 404
-
     def get(self):
         data = {
             'lighton': "True",
@@ -70,3 +66,15 @@ class Data(BasicResource):
             'humidity': "23"
         }
         return self.response(data, 200)
+
+    def patch(self, value):
+
+        SmartThingsPin = 11
+
+        if value == 1:
+            GPIO.output(SmartThingsPin, GPIO.HIGH)
+            return self.response("High set", 200)
+        else:
+            GPIO.output(SmartThingsPin, GPIO.LOW)
+            return self.response("Low set", 200)
+
