@@ -76,8 +76,13 @@ class Data(BasicResource):
         }
         return self.response(data, 200)
 
-    def patch(self, value):
+class DataChanger(BasicResource):
 
+    def __init__(self):
+        super(DataChanger, self).__init__()
+
+    def patch(self, value):
+        return self.response("Low set", 200)
         SmartThingsPin = 11
 
         if value == 1:

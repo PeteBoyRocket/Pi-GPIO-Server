@@ -1,7 +1,7 @@
 from pi_gpio import app
 from flask.ext import restful
 from flask import render_template
-from handlers import PinList, PinDetail, Data
+from handlers import PinList, PinDetail, Data, DataChanger
 from events import PinEventManager
 
 
@@ -11,7 +11,7 @@ api = restful.Api(app)
 api.add_resource(PinList, '/api/v1/pin')
 api.add_resource(PinDetail, '/api/v1/pin/<string:pin_num>')
 api.add_resource(Data, '/api/v1/data')
-api.add_resource(Data, '/api/v1/data/<string:value>')
+api.add_resource(DataChanger, '/api/v1/data/<string:value>')
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
