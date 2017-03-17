@@ -5,5 +5,5 @@
 #     resistor: PUD_DOWN
 #     event: RISING
 #     bounce: 200
-21:
+13:
     mode: OUT
