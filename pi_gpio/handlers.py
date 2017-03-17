@@ -60,15 +60,19 @@ class Data(BasicResource):
         super(Data, self).__init__()
         self.fields = {
             "lighton": fields.String,
-            "temperature": fields.String,
-            "humidity": fields.String
+            "temp": fields.String,
+            "humidity": fields.String,
+            "islight": fields.String,
+            "motion": fields.String
         }
 
     def get(self):
         data = {
-            'lighton': "True",
-            'temperature': "22",
-            'humidity': "23"
+            'lighton': "1",
+            'temp': "22",
+            'humidity': "45",
+            'islight': "1",
+            'motion': "1"
         }
         return self.response(data, 200)
 
