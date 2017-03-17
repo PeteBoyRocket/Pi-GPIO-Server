@@ -73,14 +73,14 @@ class Data(BasicResource):
 
 class DataChanger(BasicResource):
 
-    def patch(self, pin_num):
-        return {'message': 'Pin not found'}, 404
-        # SmartThingsPin = 11
+    def patch(self, value):
 
-        # if pin_num == 1:
-        #     GPIO.output(SmartThingsPin, GPIO.HIGH)
-        #     return self.response("High set", 200)
-        # else:
-        #     GPIO.output(SmartThingsPin, GPIO.LOW)
-        #     return self.response("Low set", 200)
+        SmartThingsPin = 11
+
+        if value == 1:
+            GPIO.output(SmartThingsPin, GPIO.HIGH)
+            return {'message': 'high set'}, 200
+        else:
+            GPIO.output(SmartThingsPin, GPIO.LOW)
+            return {'message': 'lowhigh set'}, 200
 
