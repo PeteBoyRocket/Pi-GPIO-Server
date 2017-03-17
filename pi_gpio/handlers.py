@@ -47,3 +47,9 @@ class PinDetail(Pin):
         if not result:
             return self.pin_not_found()
         return self.response(HTTP_MANAGER.read_one(pin_num), 200)
+
+class Data(Pin):
+
+    def get(self):
+        result = HTTP_MANAGER.read_all()
+        return self.response(result, 200)
