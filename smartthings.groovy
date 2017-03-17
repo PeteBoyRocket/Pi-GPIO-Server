@@ -194,23 +194,43 @@ private getRPiData() {
 
 // ------------------------------------------------------------------
 
-private postAction(uri){
-  setDeviceNetworkId(ip,port)  
+private postAction(path){
+
+    def params = [
+        uri: getHostAddress(),
+        path: path
+    ]
+
+    log.debug "params uri: ${params.uri}, path: ${params.path}"
+
+    try {
+        httpGet(params) { resp ->
+            resp.headers.each {
+            log.debug "${it.name} : ${it.value}"
+            }
+            log.debug "response contentType: ${resp.contentType}"
+            log.debug "response data: ${resp.data}"
+        }
+    } catch (e) {
+        log.error "something went wrong: $e"
+  }
+
+//   setDeviceNetworkId(ip,port)  
   
-  def userpass = encodeCredentials(username, password)
-  //log.debug("userpass: " + userpass) 
+//   def userpass = encodeCredentials(username, password)
+//   //log.debug("userpass: " + userpass) 
   
-  def headers = getHeader(userpass)
-  //log.debug("headders: " + headers) 
+//   def headers = getHeader(userpass)
+//   //log.debug("headders: " + headers) 
   
-  def hubAction = new physicalgraph.device.HubAction(
-    method: "POST",
-    path: uri,
-    headers: headers
-  )//,delayAction(1000), refresh()]
-  log.debug("Executing hubAction on " + getHostAddress())
-  //log.debug hubAction
-  hubAction    
+//   def hubAction = new physicalgraph.device.HubAction(
+//     method: "POST",
+//     path: uri,
+//     headers: headers
+//   )//,delayAction(1000), refresh()]
+//   log.debug("Executing hubAction on " + getHostAddress())
+//   //log.debug hubAction
+//   hubAction    
 }
 
 // ------------------------------------------------------------------
@@ -269,7 +289,8 @@ private setDeviceNetworkId(ip,port){
 }
 
 private getHostAddress() {
-	return "${ip}:${port}"
+	//return "${ip}:${port}"
+    return "http://${ip}:${port}"
 }
 
 private String convertIPtoHex(ipAddress) { 
