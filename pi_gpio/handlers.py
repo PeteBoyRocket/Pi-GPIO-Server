@@ -2,7 +2,7 @@ from flask.ext.restful import fields
 from meta import BasicResource
 from config.pins import PinHttpManager
 
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 
 HTTP_MANAGER = PinHttpManager()
 
