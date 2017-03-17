@@ -1,7 +1,7 @@
 from pi_gpio import app
 from flask.ext import restful
 from flask import render_template
-from handlers import PinList, PinDetail
+from handlers import PinList, PinDetail, Data
 from events import PinEventManager
 
 
