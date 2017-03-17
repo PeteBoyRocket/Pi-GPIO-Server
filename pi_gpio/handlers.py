@@ -75,12 +75,17 @@ class DataChanger(BasicResource):
 
     def patch(self, value):
 
-        SmartThingsPin = 11
+        try:
+            SmartThingsPin = 11
 
-        if value == 1:
-          #  GPIO.output(SmartThingsPin, GPIO.HIGH)
-            return {'message': 'high set'}, 200
-        else:
-         #   GPIO.output(SmartThingsPin, GPIO.LOW)
-            return {'message': 'lowhigh set'}, 200
+            if value == 1:
+            #  GPIO.output(SmartThingsPin, GPIO.HIGH)
+                return {'message': 'high set'}, 200
+            else:
+            #   GPIO.output(SmartThingsPin, GPIO.LOW)
+                return {'message': 'low set'}, 200
+        except Exception as e:
+            return {'message': "Dint work!" + e}, 500
+
+       
 
