@@ -48,7 +48,18 @@ class PinDetail(Pin):
             return self.pin_not_found()
         return self.response(HTTP_MANAGER.read_one(pin_num), 200)
 
-class Data(Pin):
+class Data(BasicResource):
+
+    def __init__(self):
+        super(Data, self).__init__()
+        self.fields = {            
+            "lighton": fields.Bool,
+            "temperature": fields.String,
+            "humidity": fields.String
+        }
+
+    def pin_not_found(self):
+        return {'message': 'Pin not found'}, 404
 
     def get(self):
         result = HTTP_MANAGER.read_all()
