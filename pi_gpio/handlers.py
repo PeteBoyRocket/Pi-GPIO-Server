@@ -63,7 +63,7 @@ class Data(BasicResource):
 
     def get(self):
         data = {
-            'lighton': "1",
+            'lighton': HTTP_MANAGER.read_value(11),
             'temp': "22",
             'humidity': "45",
             'islight': "1",

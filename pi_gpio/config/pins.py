@@ -51,6 +51,13 @@ class PinManager(BaseGPIO):
         except KeyError:
             return None
 
+    def read_value(self, num):
+        pin_num = int(num)
+        try:
+            return self.gpio.input(num)
+        except KeyError:
+            return None
+
     def update_value(self, num, value):
         pin_num = int(num)
         try:

@@ -6,4 +6,14 @@
 #     event: RISING
 #     bounce: 200
 11:
+    name: SmartThingsPin
     mode: OUT
+12:
+    name: MovPin
+    mode: IN
+13:
+    name: LedPin
+    mode: OUT
+15:
+    name: LightPin
+    mode: IN
