@@ -1,7 +1,9 @@
-18:
+# 18:
+#     mode: OUT
+# 23:
+#     mode: IN
+#     resistor: PUD_DOWN
+#     event: RISING
+#     bounce: 200
+27:
     mode: OUT
-23:
-    mode: IN
-    resistor: PUD_DOWN
-    event: RISING
-    bounce: 200
