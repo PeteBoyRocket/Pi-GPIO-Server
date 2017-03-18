@@ -62,9 +62,7 @@ class Data(BasicResource):
 
     def get(self):
 
-        lighton = 1
-        if HTTP_MANAGER.read_value(13) == 1:
-            lighton = 0
+        lighton = HTTP_MANAGER.read_value(13)
 
         motion = HTTP_MANAGER.read_value(12)
 
@@ -82,17 +80,3 @@ class Data(BasicResource):
             'motion': motion
         }
         return self.response(data, 200)
-
-class DataChanger(BasicResource):
-
-    def patch(self, value):
-
-        try:
-            SmartThingsPin = 11
-
-            if value == "1":
-                return {'message': 'high set'}, 200
-            else:
-                return {'message': 'low set'}, 200
-        except Exception as e:
-            return {'message': "Dint work!" + e}, 500

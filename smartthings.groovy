@@ -23,14 +23,6 @@ metadata {
         capability "Relative Humidity Measurement"        
 		capability "Sensor"	
         capability "Temperature Measurement"
-        
-     //   attribute "cpuPercentage", "string"
-      //  attribute "memory", "string"
-    //    attribute "diskUsage", "string"
-        
-        //command "restart"
-        //command "setGpioValue0"
-       // command "setGpioValue1"
 	}
 
 	simulator {
@@ -116,13 +108,13 @@ def parse(String description) {
     }
     
     log.debug "check temp..."
-    if (result.containsKey("temp") and result.temp != null) {
+    if (result.containsKey("temp") && result.temp != null) {
         log.debug "temp: ${result.temp.toDouble().round()} C"
     	sendEvent(name: "temperature", value: result.temp.toDouble().round())
     }
 
     log.debug "check humidity..."
-    if (result.containsKey("humidity") and result.humidity != null) {
+    if (result.containsKey("humidity") && result.humidity != null) {
         log.debug "humidity: ${result.humidity.toDouble().round()}"
     	sendEvent(name: "humidity", value: result.humidity.toDouble().round())
     }
