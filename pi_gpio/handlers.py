@@ -2,8 +2,6 @@ from flask.ext.restful import fields
 from meta import BasicResource
 from config.pins import PinHttpManager
 
-#import RPi.GPIO as GPIO
-
 HTTP_MANAGER = PinHttpManager()
 
 
@@ -62,17 +60,20 @@ class Data(BasicResource):
         }
 
     def get(self):
-        
+
         lighton = 1
         if HTTP_MANAGER.read_value(13) == 1:
             lighton = 0
-        
+
+        motion = HTTP_MANAGER.read_value(12)
+        islight = HTTP_MANAGER.read_value(15)
+
         data = {
             'lighton': lighton,
             'temp': "22",
             'humidity': "45",
-            'islight': "1",
-            'motion': "1"
+            'islight': islight,
+            'motion': motion
         }
         return self.response(data, 200)
 
@@ -84,10 +85,8 @@ class DataChanger(BasicResource):
             SmartThingsPin = 11
 
             if value == "1":
-                GPIO.output(SmartThingsPin, GPIO.HIGH)
                 return {'message': 'high set'}, 200
             else:
-                GPIO.output(SmartThingsPin, GPIO.LOW)
                 return {'message': 'low set'}, 200
         except Exception as e:
             return {'message': "Dint work!" + e}, 500
