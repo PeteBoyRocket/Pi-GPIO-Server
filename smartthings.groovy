@@ -112,18 +112,17 @@ def parse(String description) {
     log.debug "result: ${result}"
 
 	if (result){
-    	log.debug "Computer is up"
-   	//	sendEvent(name: "switch", value: "on")
+    	log.debug "Computer is up "
     }
     
     log.debug "check temp..."
-    if (result.containsKey("temp")) {
+    if (result.containsKey("temp") and result.temp != null) {
         log.debug "temp: ${result.temp.toDouble().round()} C"
     	sendEvent(name: "temperature", value: result.temp.toDouble().round())
     }
 
     log.debug "check humidity..."
-    if (result.containsKey("humidity")) {
+    if (result.containsKey("humidity") and result.humidity != null) {
         log.debug "humidity: ${result.humidity.toDouble().round()}"
     	sendEvent(name: "humidity", value: result.humidity.toDouble().round())
     }
@@ -176,15 +175,15 @@ def refresh() {
 def off(){
 	log.debug "Setting light off"
     sendEvent(name: "lighton", value: "off")
-    def uri = "/api/v1/data/0"
-    patchAction(uri)
+    def uri = "/api/v1/pin/11"
+    patchAction(uri, 0)
 }
 
 def on(){
 	log.debug "Setting light on"
     sendEvent(name: "lighton", value: "on")
-    def uri = "/api/v1/data/1"
-    patchAction(uri)
+    def uri = "/api/v1/pin/11"
+    patchAction(uri, 1)
 }
 
 private getRPiData() {
@@ -209,7 +208,7 @@ private getAction(path){
     result   
 }
 
-private patchAction(path){
+private patchAction(path, value){
 
     setDeviceNetworkId(ip,port)  
 
@@ -217,34 +216,13 @@ private patchAction(path){
         method: "PATCH",
         path: path,
         headers: [
-            HOST: getHostAddress()
-        ]
+            HOST: getHostAddress(),
+            "Content-Type":"application/json"
+        ],
+        body: "{\"value\":${value}}"
     )
 
-    result
-
-    // def params = [
-    //     uri: getHostAddress(),
-    //     path: path
-    // ]
-
- //   log.debug "params uri: ${params.uri}, path: ${params.path}"
-
-  
-//   def userpass = encodeCredentials(username, password)
-//   //log.debug("userpass: " + userpass) 
-  
-//   def headers = getHeader(userpass)
-//   //log.debug("headders: " + headers) 
-  
-//   def hubAction = new physicalgraph.device.HubAction(
-//     method: "POST",
-//     path: uri,
-//     headers: headers
-//   )//,delayAction(1000), refresh()]
-//   log.debug("Executing hubAction on " + getHostAddress())
-//   //log.debug hubAction
-//   hubAction    
+    result  
 }
 
 // ------------------------------------------------------------------
