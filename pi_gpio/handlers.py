@@ -72,12 +72,12 @@ class Data(BasicResource):
         if HTTP_MANAGER.read_value(15) == 1:
             islight = 0
 
-        tempAndHumidity = TEMP_HUMID_SENSOR.getTempAndHumidity()
+        temp, humidity = TEMP_HUMID_SENSOR.getTempAndHumidity()
 
         data = {
             'lighton': lighton,
-            'temp': tempAndHumidity,
-            'humidity': "45",
+            'temp': temp,
+            'humidity': humidity,
             'islight': islight,
             'motion': motion
         }
