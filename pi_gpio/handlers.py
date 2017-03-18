@@ -1,7 +1,7 @@
 from flask.ext.restful import fields
 from meta import BasicResource
 from config.pins import PinHttpManager
-#from sensors.temphumidity import TempHumiditySensor
+from sensors.temphumidity import TempHumiditySensor
 
 HTTP_MANAGER = PinHttpManager()
 #TEMP_HUMID_SENSOR = TempHumiditySensor()
