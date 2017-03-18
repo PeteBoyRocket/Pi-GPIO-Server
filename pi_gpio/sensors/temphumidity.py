@@ -19,4 +19,4 @@ class TempHumiditySensor():
       #  print result.temperature
             return result.temperature, result.humidity
 
-        return 22, 23
+        return "NA", "NA"
