@@ -66,7 +66,7 @@ class Data(BasicResource):
             lighton = 0
 
         motion = HTTP_MANAGER.read_value(12)
-       
+
         islight = 1
         if HTTP_MANAGER.read_value(15) == 1:
             islight = 0
