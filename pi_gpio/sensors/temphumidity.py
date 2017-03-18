@@ -1,17 +1,17 @@
 import RPi.GPIO as GPIO
 import dht11
-import sys
+#import sys
 
 pin = 7
 
-GPIO.setmode(GPIO.BOARD)
+#GPIO.setmode(GPIO.BOARD)
 
-instance = dht11.DHT11(pin)
+#DHT11 = dht11.DHT11(pin)
 
 class TempHumiditySensor():
 
     def getTempAndHumidity(self):
-        result = instance.read()
+      #  result = DHT11.read()
     #if result.is_valid():
       #  print("Last valid input: " + str(datetime.datetime.now()))
       #  print("Temperature: %d C" % result.temperature)
