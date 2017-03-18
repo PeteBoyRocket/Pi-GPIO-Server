@@ -1,11 +1,11 @@
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 import dht11
 #import sys
 
 pin = 7
 
-#GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BOARD)
 
 DHT11 = dht11.DHT11(pin)
 
