@@ -11,11 +11,12 @@ pin = 7
 class TempHumiditySensor():
 
     def getTempAndHumidity(self):
-      #  result = DHT11.read()
-    #if result.is_valid():
+        result = DHT11.read()
+        if result.is_valid():
       #  print("Last valid input: " + str(datetime.datetime.now()))
       #  print("Temperature: %d C" % result.temperature)
     #   print("Humidity: %d %%" % result.humidity)
       #  print result.temperature
-        return 55, 77
-    # return result.temperature, result.humidity
+            return result.temperature, result.humidity
+
+        return 22, 23
