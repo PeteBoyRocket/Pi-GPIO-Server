@@ -6,7 +6,7 @@ pin = 7
 
 #GPIO.setmode(GPIO.BOARD)
 
-#DHT11 = dht11.DHT11(pin)
+DHT11 = dht11.DHT11(pin)
 
 class TempHumiditySensor():
 
