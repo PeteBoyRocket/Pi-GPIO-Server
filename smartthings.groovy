@@ -31,7 +31,7 @@ metadata {
 
 	tiles(scale: 2) {
 		valueTile("temperature", "device.temperature", width: 2, height: 2) {
-            state "temperature", label:'${currentValue}°', unit: "C",
+            state "temperature", label:'Temp ${currentValue}°', unit: "C",
             backgroundColors:[
                 [value: 0, color: "#153591"],
                 [value: 5, color: "#1e9cbb"],
@@ -43,7 +43,7 @@ metadata {
             ]
         }
         valueTile("humidity", "device.humidity", width: 2, height: 2) {
-            state "humidity", label:'${currentValue}°', unit: "%",
+            state "humidity", label:'Humidity ${currentValue}%', unit: "%",
             backgroundColors:[
                 [value: 0, color: "#153591"],
                 [value: 5, color: "#1e9cbb"],
@@ -54,15 +54,11 @@ metadata {
                 [value: 30, color: "#bc2323"]
             ]
         }
-        //standardTile("lighton", "device.switch", width: 2, height: 2, canChangeIcon: true) {
-        //    state "off", label:'Off', icon:"st.contact.contact.closed", backgroundColor:"#79b821", action: "on"
-		//	state "on", label:'On', icon:"st.contact.contact.open", backgroundColor:"#ffa81e", action: "off"
-		//}
-        standardTile("motion", "device.motion", width: 2, height: 2) {
+        standardTile("motion", "device.motion", width: 3, height: 2) {
             state("inactive", label:'${name}', icon:"st.motion.motion.inactive", backgroundColor:"#79b821")
             state("active", label:'${name}', icon:"st.motion.motion.active", backgroundColor:"#ffa81e")
         }
-        standardTile("islight", "device.illuminance", width: 2, height: 2) {
+        standardTile("islight", "device.illuminance", width: 3, height: 2) {
             state("dark", label:'${name}', icon:"st.illuminance.illuminance.dark", backgroundColor:"#79b821")
             state("bright", label:'${name}', icon:"st.illuminance.illuminance.bright", backgroundColor:"#ffa81e")
         }
@@ -70,7 +66,7 @@ metadata {
         	state "default", action:"refresh.refresh", icon: "st.secondary.refresh"
         }
         
-        multiAttributeTile(name:"lighton", type: "lighting", width: 3, height: 2){
+        multiAttributeTile(name:"lighton", type: "lighting", canChangeIcon: true){
      	    tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
            		attributeState "off", label:'Off', icon:"st.contact.contact.open", backgroundColor:"#79b821", action: "on"
              	attributeState "on", label:'On', icon:"st.contact.contact.closed", backgroundColor:"#ffa81e", action: "off"
@@ -78,7 +74,7 @@ metadata {
    		}
     
         main "lighton"
-        details(["motion", "islight", "temperature", "humidity", "lighton", "refresh"])
+        details(["lighton", "motion", "islight", "temperature", "humidity", "refresh"])
     }
 }
 
