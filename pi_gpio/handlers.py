@@ -1,9 +1,10 @@
 from flask.ext.restful import fields
 from meta import BasicResource
 from config.pins import PinHttpManager
+from sensors.temphumidity import TempHumiditySensor
 
 HTTP_MANAGER = PinHttpManager()
-
+TEMP_HUMID_SENSOR = TempHumiditySensor()
 
 class Pin(BasicResource):
 
@@ -70,6 +71,8 @@ class Data(BasicResource):
         islight = 1
         if HTTP_MANAGER.read_value(15) == 1:
             islight = 0
+
+      #  tempAndHumidity = TEMP_HUMID_SENSOR.getTempAndHumidity()
 
         data = {
             'lighton': lighton,
