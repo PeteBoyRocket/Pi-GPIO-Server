@@ -17,5 +17,5 @@ class TempHumiditySensor():
       #  print("Temperature: %d C" % result.temperature)
     #   print("Humidity: %d %%" % result.humidity)
       #  print result.temperature
-        return 55, 77
+        return 55#, 77
     # return result.temperature, result.humidity
