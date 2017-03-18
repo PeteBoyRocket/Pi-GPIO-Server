@@ -1,11 +1,11 @@
-import RPi.GPIO as GPIO
-import time
+#import RPi.GPIO as GPIO
+#import time
 import dht11
 #import sys
 
 pin = 7
 
-GPIO.setmode(GPIO.BOARD)
+#GPIO.setmode(GPIO.BOARD)
 
 DHT11 = dht11.DHT11(pin)
 
@@ -17,7 +17,7 @@ class TempHumiditySensor():
             result = DHT11.read()
             if result.is_valid():
                 return result.temperature, result.humidity
-            time.sleep(1)
+           # time.sleep(1)
         return (None, None)
 
 
