@@ -4,7 +4,7 @@ from config.pins import PinHttpManager
 from sensors.temphumidity import TempHumiditySensor
 
 HTTP_MANAGER = PinHttpManager()
-TEMP_HUMID_SENSOR = TempHumiditySensor()
+#TEMP_HUMID_SENSOR = TempHumiditySensor()
 
 class Pin(BasicResource):
 
