@@ -54,10 +54,10 @@ metadata {
                 [value: 30, color: "#bc2323"]
             ]
         }
-        standardTile("lighton", "device.switch", width: 2, height: 2, canChangeIcon: true) {
-            state "off", label:'Off', icon:"st.contact.contact.closed", backgroundColor:"#79b821", action: "on"
-			state "on", label:'On', icon:"st.contact.contact.open", backgroundColor:"#ffa81e", action: "off"
-		}
+        //standardTile("lighton", "device.switch", width: 2, height: 2, canChangeIcon: true) {
+        //    state "off", label:'Off', icon:"st.contact.contact.closed", backgroundColor:"#79b821", action: "on"
+		//	state "on", label:'On', icon:"st.contact.contact.open", backgroundColor:"#ffa81e", action: "off"
+		//}
         standardTile("motion", "device.motion", width: 2, height: 2) {
             state("inactive", label:'${name}', icon:"st.motion.motion.inactive", backgroundColor:"#79b821")
             state("active", label:'${name}', icon:"st.motion.motion.active", backgroundColor:"#ffa81e")
@@ -70,12 +70,12 @@ metadata {
         	state "default", action:"refresh.refresh", icon: "st.secondary.refresh"
         }
         
-        // multiAttributeTile(name:"contact", type: "lighting", width: 3, height: 2){
-     	//    tileAttribute ("device.contact", key: "PRIMARY_CONTROL") {
-        //    		attributeState "closed", label:'Off', icon:"st.contact.contact.open", backgroundColor:"#79b821", action: "setGpioValue1"
-        //     	attributeState "open", label:'On', icon:"st.contact.contact.closed", backgroundColor:"#ffa81e", action: "setGpioValue0"
-      	//  	}
-   		// }
+        multiAttributeTile(name:"lighton", type: "lighting", width: 3, height: 2){
+     	    tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
+           		attributeState "off", label:'Off', icon:"st.contact.contact.open", backgroundColor:"#79b821", action: "on"
+             	attributeState "on", label:'On', icon:"st.contact.contact.closed", backgroundColor:"#ffa81e", action: "off"
+      	  	}
+   		}
     
         main "lighton"
         details(["motion", "islight", "temperature", "humidity", "lighton", "refresh"])
