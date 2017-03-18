@@ -4,7 +4,7 @@ from config.pins import PinHttpManager
 from sensors.temphumidity import TempHumiditySensor
 
 HTTP_MANAGER = PinHttpManager()
-#TEMP_HUMID_SENSOR = TempHumiditySensor()
+TEMP_HUMID_SENSOR = TempHumiditySensor()
 
 class Pin(BasicResource):
 
@@ -72,11 +72,11 @@ class Data(BasicResource):
         if HTTP_MANAGER.read_value(15) == 1:
             islight = 0
 
-      #  tempAndHumidity = TEMP_HUMID_SENSOR.getTempAndHumidity()
+        tempAndHumidity = TEMP_HUMID_SENSOR.getTempAndHumidity()
 
         data = {
             'lighton': lighton,
-            'temp': "22",
+            'temp': tempAndHumidity,
             'humidity': "45",
             'islight': islight,
             'motion': motion
