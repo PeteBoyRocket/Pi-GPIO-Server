@@ -43,12 +43,12 @@ def swLight(ev=None):
 def lightOff():
         print 'Light OFF'
         lastOnTime = datetime.datetime(2000, 1, 1, 0, 0)
-        GPIO.output(LedPin, GPIO.HIGH)
+        GPIO.output(LedPin, GPIO.LOW)
 
 def lightOn():
         print 'Light ON'
         lastOnTime = datetime.datetime.utcnow()
-        GPIO.output(LedPin, GPIO.LOW)
+        GPIO.output(LedPin, GPIO.HIGH)
        
 def loop():
         GPIO.add_event_detect(MovPin, GPIO.FALLING, callback=swMov, bouncetime=200) # wait for falling and set bouncetime to prevent the callback function from being called multiple times when the button is pressed
