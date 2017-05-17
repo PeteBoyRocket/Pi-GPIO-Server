@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import datetime
 import time
 
-LightOnSecs = 10
+LightOnSecs = 20
 
 SmartThingsPin = 11 # pin11 smartthings controlled pin --- GPIO-17
 LedPin = 13    # pin13 --- led GPIO-
