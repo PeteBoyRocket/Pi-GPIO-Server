@@ -13,7 +13,7 @@ preferences {
 }
 
 metadata {
-	definition (name: "Raspberry Pi", namespace: "nicholaswilde", author: "Nicholas Wilde") {
+	definition (name: "Raspberry Pi", namespace: "peteboyrocket", author: "Pete Whitehead") {
 		capability "Actuator"
         capability "Illuminance Measurement"        
         capability "Light"
