@@ -8,8 +8,8 @@ import java.util.Map.Entry;
 preferences {
         input("ip", "string", title:"IP Address", description: "192.168.1.150", defaultValue: "192.168.1.150" ,required: true, displayDuringSetup: true)
         input("port", "string", title:"Port", description: "80", defaultValue: "80" , required: true, displayDuringSetup: true)
-        input("username", "string", title:"Username", description: "pi", defaultValue: "pi" , required: true, displayDuringSetup: true)
-        input("password", "password", title:"Password", description: "raspberry", defaultValue: "raspberry" , required: true, displayDuringSetup: true)
+     //   input("username", "string", title:"Username", description: "pi", defaultValue: "pi" , required: true, displayDuringSetup: true)
+    //    input("password", "password", title:"Password", description: "raspberry", defaultValue: "raspberry" , required: true, displayDuringSetup: true)
 }
 
 metadata {
@@ -23,6 +23,7 @@ metadata {
         capability "Relative Humidity Measurement"        
 		capability "Sensor"	
         capability "Temperature Measurement"
+        capability "Switch"
 	}
 
 	simulator {
@@ -33,25 +34,25 @@ metadata {
 		valueTile("temperature", "device.temperature", width: 2, height: 2) {
             state "temperature", label:'Temp ${currentValue}°', unit: "C",
             backgroundColors:[
-                [value: 0, color: "#153591"],
-                [value: 5, color: "#1e9cbb"],
-                [value: 10, color: "#90d2a7"],
-                [value: 15, color: "#44b621"],
-                [value: 20, color: "#f1d801"],
-                [value: 25, color: "#d04e00"],
-                [value: 30, color: "#bc2323"]
+                [value: 40, color: "#153591"],
+                [value: 44, color: "#1e9cbb"],
+                [value: 59, color: "#90d2a7"],
+                [value: 74, color: "#44b621"],
+                [value: 84, color: "#f1d801"],
+                [value: 92, color: "#d04e00"],
+                [value: 96, color: "#bc2323"]
             ]
         }
         valueTile("humidity", "device.humidity", width: 2, height: 2) {
             state "humidity", label:'Humidity ${currentValue}%', unit: "%",
             backgroundColors:[
-                [value: 0, color: "#153591"],
-                [value: 5, color: "#1e9cbb"],
-                [value: 10, color: "#90d2a7"],
-                [value: 15, color: "#44b621"],
-                [value: 20, color: "#f1d801"],
-                [value: 25, color: "#d04e00"],
-                [value: 30, color: "#bc2323"]
+                [value: 35, color: "#153591"],
+                [value: 40, color: "#1e9cbb"],
+                [value: 45, color: "#90d2a7"],
+                [value: 50, color: "#44b621"],
+                [value: 55, color: "#f1d801"],
+                [value: 60, color: "#d04e00"],
+                [value: 65, color: "#bc2323"]
             ]
         }
         standardTile("motion", "device.motion", width: 3, height: 2) {
@@ -68,8 +69,8 @@ metadata {
         
         multiAttributeTile(name:"lighton", type: "lighting", canChangeIcon: true){
      	    tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
-           		attributeState "off", label:'Off', icon:"st.contact.contact.open", backgroundColor:"#79b821", action: "on"
-             	attributeState "on", label:'On', icon:"st.contact.contact.closed", backgroundColor:"#ffa81e", action: "off"
+           		attributeState "off", label:'Off', icon:"st.contact.contact.open", backgroundColor:"#ffffff", action: "on"
+             	attributeState "on", label:'On', icon:"st.contact.contact.closed", backgroundColor:"#00a0dc", action: "off"
       	  	}
    		}
     
@@ -270,7 +271,6 @@ private setDeviceNetworkId(ip,port){
 
 private getHostAddress() {
 	return "${ip}:${port}"
-   // return "http://${ip}:${port}"
 }
 
 private String convertIPtoHex(ipAddress) { 
